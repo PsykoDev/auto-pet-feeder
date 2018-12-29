@@ -18,5 +18,5 @@ Keep your pets happy.
 ----
 ## EU opcode
 
-S_SPAWN_SERVANT = 39405
+S_SPAWN_SERVANT = 39405<br>
 S_CHANGE_SERVANT_ENERGY = 54034
