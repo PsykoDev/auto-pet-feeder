@@ -3,6 +3,7 @@
 	"name": "auto-pet-feeder",
 	"author": "teralove",
 	"description": "Keep your pets happy.",
+	"version": "Undefined",
 	"options": {
 		"niceName": "auto-pet-feeder",
 		"guiName": "auto-pet-feeder"
