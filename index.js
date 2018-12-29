@@ -37,7 +37,7 @@ module.exports = function AutoPetFeeder(mod) {
         }
     });
         
-    mod.hook('S_SPAWN_SERVANT', 1, (event) => {
+    mod.hook('S_SPAWN_SERVANT', 2, (event) => {
 			gameId = event.owner;
             if (enabled && event.energy < MinimumEnergy) {
                 feedPet();

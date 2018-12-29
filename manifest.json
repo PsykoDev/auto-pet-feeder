@@ -1,0 +1,14 @@
+{
+    "files": {
+        "index.js": "610ba7a5f01e9d98fc3ab037a09b4f72b3c796f8b271e356f0e8316b4dbce7ba",
+        "module.json": "235ceb544585b40c5f0e410ea6a4993153a11cb6d74677766ab5fdb4bb12ff32"
+    },
+    "defs": {
+        "C_PLAYER_LOCATION": 5,
+        "C_USE_ITEM": 3,
+        "S_CHANGE_SERVANT_ENERGY": 1,
+        "S_INVEN": 16,
+        "S_LOGIN": 12,
+        "S_SPAWN_SERVANT": 2
+    }
+}
