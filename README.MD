@@ -12,4 +12,7 @@ Keep your pets happy.
 ### `feedpet`
 - Feed your pet manually, same as using an item.
 
----
+## Note
+-Maybe need more fix 
+
+----
