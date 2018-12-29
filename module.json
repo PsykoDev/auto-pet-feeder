@@ -1,13 +1,13 @@
 {
-	"disableAutoUpdate": false,
-	"name": "auto-pet-feeder",
-	"author": "teralove",
-	"description": "Keep your pets happy.",
-	"version": "Undefined",
-	"options": {
-		"niceName": "auto-pet-feeder",
-		"guiName": "auto-pet-feeder"
-	},
-	"servers": ["https://raw.githubusercontent.com/PsykoDev/auto-pet-feeder/master/"],
-	"supportUrl": "https://github.com/PsykoDev/auto-pet-feeder/issues"
+    "disableAutoUpdate": false,
+    "name": "auto-pet-feeder",
+    "author": "PsykoDev",
+    "description": "Keep your pets happy.",
+    "version": "1.0",
+    "options": {
+        "niceName": "auto-pet-feeder",
+        "guiName": "auto-pet-feeder"
+    },
+    "servers": ["https://raw.githubusercontent.com/PsykoDev/auto-pet-feeder/master/"],
+    "supportUrl": "https://github.com/PsykoDev/auto-pet-feeder/issues"
 }
