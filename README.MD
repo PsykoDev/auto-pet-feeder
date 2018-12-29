@@ -9,6 +9,7 @@ Keep your pets happy.
 ### `autopetfeeder`
 - Toggle on/off
 - Default is on
+- Add auto-update
 ### `feedpet`
 - Feed your pet manually, same as using an item.
 
