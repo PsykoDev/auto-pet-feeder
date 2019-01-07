@@ -1,29 +1,33 @@
-'use strict'
-
-module.exports = function AutoPetFeeder(mod) {
-	const command = mod.command || mod.require.command;
+module.exports = function AutoPetFeeder(dispatch) {
+	const command = dispatch.command || dispatch.require.command;
     const SendNotifications = true; // Send notifications when items are consumed
-    const MinimumEnergy = 5; // How much remaining energy the pet needs to trigger feed
+    const MinimumEnergy = 10; // How much remaining energy the pet needs to trigger feed, you can't use pet functions below 10
     
     let enabled = true,
-    gameId,
-    playerLocation, 
-    onCd = false;
+		gameId,
+		playerLocation, 
+		onCd = false;
     
     let feedList = [
-    {
-        name: 'Pet Treat', // Common item. Restores 30 energy
-        id: 177131,
-        invQtd: 0,
-        dbid: 0,
-    }
+		{
+			name: 'Pet Treat', // Common item. Restores 30 energy
+			id: 177131,
+			invQtd: 0,
+			dbid: 0,
+		}, 
+		{
+			name: 'Pet Food', // Uncommon item. Restores 100 energy
+			id: 167134,
+			invQtd: 0,
+			dbid: 0,
+		}
     ];
-        
-    mod.hook('S_LOGIN', 12, (event) => { gameId = event.gameId; });
+	
+    dispatch.hook('S_LOGIN', 12, (event) => { gameId = event.gameId; });
     
-    mod.hook('C_PLAYER_LOCATION', 5, (event) => { playerLocation = event; });
+    dispatch.hook('C_PLAYER_LOCATION', 5, (event) => { playerLocation = event.loc; });
     
-    mod.hook('S_INVEN', 16, (event) => {
+    dispatch.hook('S_INVEN', 16, { order: -10 }, (event) => {
         if (!enabled) return;
 
         let tempInv = event.items;
@@ -37,14 +41,15 @@ module.exports = function AutoPetFeeder(mod) {
         }
     });
         
-    mod.hook('S_SPAWN_SERVANT', 2, (event) => {
-			gameId = event.owner;
+    dispatch.hook('S_SPAWN_SERVANT', 2, (event) => {
+        if (gameId == event.owner) {
             if (enabled && event.energy < MinimumEnergy) {
                 feedPet();
             }
+        }
     });
     
-    mod.hook('S_CHANGE_SERVANT_ENERGY', 1, (event) => {
+    dispatch.hook('S_CHANGE_SERVANT_ENERGY', 1, (event) => {
         if (enabled && event.energy < MinimumEnergy) {
             feedPet();
         }
@@ -69,7 +74,7 @@ module.exports = function AutoPetFeeder(mod) {
     }
     
     function useItem(foodInfo) {
-        mod.toServer('C_USE_ITEM', 3, {
+        dispatch.toServer('C_USE_ITEM', 3, {
             gameId: gameId,
             id: foodInfo.id,
             dbid: foodInfo.dbid,
@@ -81,16 +86,16 @@ module.exports = function AutoPetFeeder(mod) {
             unk1: 0,
             unk2: 0,
             unk3: 0,
-            unk4: true
+            unk4: 1
         });
     }
     
-    mod.command.add('autopetfeeder', () => {
+    command.add(['autopetfeeder'], () => {
         enabled = !enabled;
-        command.message('(auto-pet-feeder) ' + (enabled) ? 'enabled' : 'disabled');
+        command.message(`(auto-pet-feeder) ${enabled ? 'en' : 'dis'}abled.`);
     });
     
-    mod.command.add('feedpet', () => {
+    command.add('feedpet', () => {
         feedPet();
     });
 
